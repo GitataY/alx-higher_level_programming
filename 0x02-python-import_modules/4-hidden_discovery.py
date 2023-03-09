@@ -1,11 +1,8 @@
 #!/usr/bin/python3
-import importlib.util
+from hidden_4 import *
 
-spec = importlib.util.spec_from_file_location("hidden_4", "C:\Users\Yvonne\Downloads\hidden_4.pyc")
-module = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(module)
-
-names = [name for name in dir(module) if not name.startswith("__")]
-names.sort()
-for name in names:
-    print(name)
+if __name == "__main__":
+    arr = dir()
+    for i in range(0, len(arr)):
+        if arr[i][0:2] != "__":
+            print("{}".format(arr[i]))

@@ -5,4 +5,3 @@
 class Square:
     """This class square defines a square"""
     pass
-

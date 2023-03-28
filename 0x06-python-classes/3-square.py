@@ -2,7 +2,7 @@
 """This module calculates the area of a square"""
 
 
-classs Square:
+class Square:
     """This class implements square attributes"""
     def __init__(self, size=0):
         """This function specifies conditions"""
@@ -13,4 +13,4 @@ classs Square:
 
     def area(self):
         """This function calculates the area of the square"""
-        self.__size ** 2
+        return self.__size ** 2

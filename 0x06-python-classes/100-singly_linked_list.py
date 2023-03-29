@@ -4,67 +4,51 @@ This module defines a Singly linked list
 """
 
 
-class Node:
-    """square implementation"""
-    def __init__(self, data, next_node=None):
-        """Defines a node for a singly linked list
-        """
-        self.data = data
-        self.next_node = next_node
+class Square:
+    """Square implementation"""
+    def __init__(self, size=0, position=(0, 0)):
+        """This position defines init"""
+        self.size = size
+        self.position = position
 
     @property
-    def data(self):
-        return self.__data
+    def size(self):
+        """This function defines size"""
+        return self.__size
 
-    @data.setter
-    def data(self, value):
-        if type(value) != int:
-            raise TypeError('data must be an integer')
-
-        self.__data = value
+    @size.setter
+    def size(self, value):
+        """This functio sets the value"""
+        if not isinstance(value, int):
+            raise TypeError("size must be an integer")
+        if value < 0:
+            raise ValueError("size must be >= 0")
+        self.__size = value
 
     @property
-    def next_node(self):
-        return self.__next_node
+    def position(self):
+        """This function defines position"""
+        return self.__position
 
-    @next_node.setter
-    def next_node(self, value):
-        if value is not None and type(value) != Node:
-            raise TypeError('next_node must be a Node object')
-        self.__next_node = value
+    @position.setter
+    def position(self, value):
+        """This function taises errors"""
+        if (not isinstance(value, tuple) or len(value) != 2 or
+                not all(isinstance(i, int) for i in value) or
+                not all(i >= 0 for i in value)):
+            raise TypeError("position must be a tuple of 2 positive integers")
+        self.__position = value
 
+    def area(self):
+        """This function calculates area"""
+        return self.__size ** 2
 
-class SinglyLinkedList:
-    def __init__(self):
-        """Defines the singly linked list
-        """
-        self.__head = None
-
-    def sorted_insert(self, value):
-        if self.__head is None:
-            self.__head = Node(value)
-        else:
-            current = self.__head
-            previous = None
-            while current and value > current.data:
-                previous = current
-                current = current.next_node
-            if current is None:
-                previous.next_node = Node(value)
-            elif current is self.__head and previous is None:
-                self.__head = Node(value, current)
-            else:
-                newNode = Node(value, current)
-                previous.next_node = newNode
-
-    def __repr__(self):
-        node = self.__head
-        txt = ''
-        while 1:
-            txt += str(node.data)
-            node = node.next_node
-            if node.next_node is None:
-                break
-            else:
-                txt += '\n'
-        return
+    def my_print(self):
+        """This function prints self"""
+        if self.__size == 0:
+            print()
+            return
+        for _ in range(self.__position[1]):
+            print()
+        for _ in range(self.__size):
+            print(" " * self.__position[0], "#" * self.__size)

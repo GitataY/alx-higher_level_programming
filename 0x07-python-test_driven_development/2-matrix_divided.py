@@ -1,17 +1,19 @@
 #!/usr/bin/python3
 """"This module divides all elements of the matrix"""
 
-    
+
 def matrix_divided(matrix, div):
     """
     Divides all elements of a matrix by a given divisor.
 
     Args:
-        matrix (list of lists): Matrix represented as a list of lists of integers or floats.
+        matrix (list of lists): Matrix represented as a list
+        of lists of integers or floats.
         div (int or float): Divisor to divide the matrix elements.
 
     Returns:
-        list of lists: A new matrix with elements divided by the divisor, rounded to 2 decimal places.
+        list of lists: A new matrix with elements divided by the
+            divisor, rounded to 2 decimal places.
 
     Raises:
         TypeError: If matrix is not a list of lists of integers or floats.
@@ -21,8 +23,10 @@ def matrix_divided(matrix, div):
 
     """
     # Check if matrix is a list of lists
-    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+    if not isinstance(matrix, list) or not all(isinstance(row, list) 
+     for row in matrix):
+        raise TypeError("matrix must be a matrix (list of lists)
+             of integers/floats")
 
     # Check if each row of the matrix has the same size
     row_size = len(matrix[0])

@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+""""This module divides all elements of the matrix"""
+
+    
 def matrix_divided(matrix, div):
     """
     Divides all elements of a matrix by a given divisor.

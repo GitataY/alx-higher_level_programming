@@ -1,0 +1,39 @@
+import unittest
+from say_my_name import say_my_name
+
+class TestSayMyName(unittest.TestCase):
+"""This class module tests the name type"""
+
+    def test_say_my_name(self):
+	"""This function tests say_my_name"""
+        # Test case 1: First name and last name provided
+        first_name = "John"
+        last_name = "Smith"
+        expected_output = "My name is John Smith"
+        with self.capture_output() as captured:
+            say_my_name(first_name, last_name)
+        self.assertEqual(captured.stdout, expected_output)
+
+        # Test case 2: First name provided, last name empty
+        first_name = "Walter"
+        expected_output = "My name is Walter"
+        with self.capture_output() as captured:
+            say_my_name(first_name)
+        self.assertEqual(captured.stdout, expected_output)
+
+        # Test case 3: Invalid first name (should raise TypeError)
+        first_name = 12
+        last_name = "White"
+        with self.assertRaises(TypeError) as e:
+            say_my_name(first_name, last_name)
+        self.assertEqual(str(e.exception), "first_name must be a string")
+
+        # Test case 4: Invalid last name (should raise TypeError)
+        first_name = "Bob"
+        last_name = 123
+        with self.assertRaises(TypeError) as e:
+            say_my_name(first_name, last_name)
+        self.assertEqual(str(e.exception), "last_name must be a string")
+
+if __name__ == '__main__':
+    unittest.main()

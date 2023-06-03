@@ -1,0 +1,44 @@
+import unittest
+from text_indentation import text_indentation
+import io
+import sys
+
+class TestTextIndentation(unittest.TestCase):
+    def test_text_indentation(self):
+        # Test case 1: Single sentence with period
+        text = "This is a sentence."
+        expected_output = "This is a sentence.\n\n"
+        with self.capture_output() as captured:
+            text_indentation(text)
+        self.assertEqual(captured.stdout, expected_output)
+
+        # Test case 2: Multiple sentences with period, question mark, and colon
+        text = "First sentence. Second sentence? Third sentence: Fourth sentence."
+        expected_output = "First sentence.\n\nSecond sentence?\n\nThird sentence:\n\nFourth sentence.\n\n"
+        with self.capture_output() as captured:
+            text_indentation(text)
+        self.assertEqual(captured.stdout, expected_output)
+
+        # Test case 3: Empty text (no output)
+        text = ""
+        expected_output = ""
+        with self.capture_output() as captured:
+            text_indentation(text)
+        self.assertEqual(captured.stdout, expected_output)
+
+        # Test case 4: Invalid input type (should raise TypeError)
+        text = 123
+        with self.assertRaises(TypeError) as e:
+            text_indentation(text)
+        self.assertEqual(str(e.exception), "text must be a string")
+
+    def capture_output(self):
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+        return captured_output
+
+    def tearDown(self):
+        sys.stdout = sys.__stdout__
+
+if __name__ == '__main__':
+    unittest.main()

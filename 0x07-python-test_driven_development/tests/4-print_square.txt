@@ -1,0 +1,58 @@
+import unittest
+from print_square import print_square
+import io
+import sys
+
+class TestPrintSquare(unittest.TestCase):
+    def test_print_square(self):
+        # Test case 1: Size 4
+        size = 4
+        expected_output = "####\n####\n####\n####\n"
+        with self.capture_output() as captured:
+            print_square(size)
+        self.assertEqual(captured.stdout, expected_output)
+
+        # Test case 2: Size 10
+        size = 10
+        expected_output = "##########\n##########\n##########\n##########\n##########\n"
+        expected_output += "##########\n##########\n##########\n##########\n##########\n"
+        with self.capture_output() as captured:
+            print_square(size)
+        self.assertEqual(captured.stdout, expected_output)
+
+        # Test case 3: Size 0 (empty square)
+        size = 0
+        expected_output = ""
+        with self.capture_output() as captured:
+            print_square(size)
+        self.assertEqual(captured.stdout, expected_output)
+
+        # Test case 4: Size 1
+        size = 1
+        expected_output = "#\n"
+        with self.capture_output() as captured:
+            print_square(size)
+        self.assertEqual(captured.stdout, expected_output)
+
+        # Test case 5: Invalid size (should raise TypeError)
+        size = "5"
+        with self.assertRaises(TypeError) as e:
+            print_square(size)
+        self.assertEqual(str(e.exception), "size must be an integer")
+
+        # Test case 6: Negative size (should raise ValueError)
+        size = -3
+        with self.assertRaises(ValueError) as e:
+            print_square(size)
+        self.assertEqual(str(e.exception), "size must be >= 0")
+
+    def capture_output(self):
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+        return captured_output
+
+    def tearDown(self):
+        sys.stdout = sys.__stdout__
+
+if __name__ == '__main__':
+    unittest.main()

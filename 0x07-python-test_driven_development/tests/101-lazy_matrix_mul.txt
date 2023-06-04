@@ -1,0 +1,33 @@
+from numpy import array
+from numpy.testing import assert_array_equal
+from random import randint
+
+def run_interactive_test():
+    # Test case 1
+    m_a = [[1, 2], [3, 4]]
+    m_b = [[1, 2], [3, 4]]
+    expected_result = [[7, 10], [15, 22]]
+
+    result = lazy_matrix_mul(m_a, m_b)
+    assert_array_equal(array(result), array(expected_result))
+    print(f"Test case 1: {m_a} x {m_b} = {result}")
+
+    # Test case 2
+    m_a = [[1, 2]]
+    m_b = [[3, 4], [5, 6]]
+    expected_result = [[13, 16]]
+
+    result = lazy_matrix_mul(m_a, m_b)
+    assert_array_equal(array(result), array(expected_result))
+    print(f"Test case 2: {m_a} x {m_b} = {result}")
+
+    # Test case 3: Random matrices
+    m_a = [[randint(1, 9) for _ in range(3)] for _ in range(3)]
+    m_b = [[randint(1, 9) for _ in range(3)] for _ in range(3)]
+    expected_result = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+
+    result = lazy_matrix_mul(m_a, m_b)
+    assert_array_equal(array(result), array(expected_result))
+    print(f"Test case 3: {m_a} x {m_b} = {result}")
+
+run_interactive_test()

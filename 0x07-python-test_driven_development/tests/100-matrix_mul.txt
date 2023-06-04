@@ -1,0 +1,52 @@
+from matrix_mul import matrix_mul
+
+# Test case 1: Valid matrices
+m_a = [[1, 2, 3], [4, 5, 6]]
+m_b = [[7, 8], [9, 10], [11, 12]]
+result = matrix_mul(m_a, m_b)
+print("Result of matrix multiplication:")
+for row in result:
+    print(row)
+# Expected output:
+# Result of matrix multiplication:
+# [58, 64]
+# [139, 154]
+
+# Test case 2: Matrices with invalid dimensions
+m_c = [[1, 2, 3], [4, 5, 6]]
+m_d = [[7, 8], [9, 10], [11, 12], [13, 14]]
+try:
+    result = matrix_mul(m_c, m_d)
+    print("Result of matrix multiplication:")
+    for row in result:
+        print(row)
+except ValueError as e:
+    print("ValueError:", str(e))
+# Expected output:
+# ValueError: m_a and m_b can't be multiplied
+
+# Test case 3: Matrices with invalid elements
+m_e = [[1, 2, 3], [4, 5, 6]]
+m_f = [[7, 8, 'a'], [9, 10, 11], [12, 13, 14]]
+try:
+    result = matrix_mul(m_e, m_f)
+    print("Result of matrix multiplication:")
+    for row in result:
+        print(row)
+except TypeError as e:
+    print("TypeError:", str(e))
+# Expected output:
+# TypeError: m_b should contain only integers or floats
+
+# Test case 4: Empty matrices
+m_g = []
+m_h = [[]]
+try:
+    result = matrix_mul(m_g, m_h)
+    print("Result of matrix multiplication:")
+    for row in result:
+        print(row)
+except ValueError as e:
+    print("ValueError:", str(e))
+# Expected output:
+# ValueError: m_a can't be empty or m_b can't be empty

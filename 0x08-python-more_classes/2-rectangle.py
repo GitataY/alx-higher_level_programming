@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """This class module defines a rectangle"""
 
 

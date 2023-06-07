@@ -1,58 +1,57 @@
-import unittest
-from print_square import print_square
-import io
-import sys
+The ``4-print_square`` module
+============================
 
-class TestPrintSquare(unittest.TestCase):
-    def test_print_square(self):
-        # Test case 1: Size 4
-        size = 4
-        expected_output = "####\n####\n####\n####\n"
-        with self.capture_output() as captured:
-            print_square(size)
-        self.assertEqual(captured.stdout, expected_output)
+Using ``print_square``
+---------------------
 
-        # Test case 2: Size 10
-        size = 10
-        expected_output = "##########\n##########\n##########\n##########\n##########\n"
-        expected_output += "##########\n##########\n##########\n##########\n##########\n"
-        with self.capture_output() as captured:
-            print_square(size)
-        self.assertEqual(captured.stdout, expected_output)
+Importing function from the module:
 
-        # Test case 3: Size 0 (empty square)
-        size = 0
-        expected_output = ""
-        with self.capture_output() as captured:
-            print_square(size)
-        self.assertEqual(captured.stdout, expected_output)
+    >>> print_square = __import__('4-print_square').print_square
 
-        # Test case 4: Size 1
-        size = 1
-        expected_output = "#\n"
-        with self.capture_output() as captured:
-            print_square(size)
-        self.assertEqual(captured.stdout, expected_output)
+Printing a square with a size of 5
 
-        # Test case 5: Invalid size (should raise TypeError)
-        size = "5"
-        with self.assertRaises(TypeError) as e:
-            print_square(size)
-        self.assertEqual(str(e.exception), "size must be an integer")
+    >>> print_square(5)
+    #####
+    #####
+    #####
+    #####
+    #####
 
-        # Test case 6: Negative size (should raise ValueError)
-        size = -3
-        with self.assertRaises(ValueError) as e:
-            print_square(size)
-        self.assertEqual(str(e.exception), "size must be >= 0")
+Passing 0 as the size of the square
 
-    def capture_output(self):
-        captured_output = io.StringIO()
-        sys.stdout = captured_output
-        return captured_output
+    >>> print_square(0)
 
-    def tearDown(self):
-        sys.stdout = sys.__stdout__
+Passing a float number as the size of the square
 
-if __name__ == '__main__':
-    unittest.main()
+    >>> print_square(1.0)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: size must be an integer
+
+Passing a string as the size of the square
+
+    >>> print_square('2')
+    Traceback (most recent call last):
+    	      ...
+    TypeError: size must be an integer
+
+Passing a negative number as the size of the square
+
+    >>> print_square(-2)
+    Traceback (most recent call last):
+    	     ...
+    ValueError: size must be >= 0
+
+Passing None as the size of the square
+
+    >>> print_square(None)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: size must be an integer
+
+Missing argument
+
+   >>> print_square()
+   Traceback (most recent call last):
+   	     ...
+   TypeError: print_square() missing 1 required positional argument: 'size'

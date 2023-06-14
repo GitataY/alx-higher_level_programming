@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""This module saves, loads and add"""
+""" Module 7-add_item: adds all arguments to a Python list, and then
+saves them to a file
+"""
 
 
 import sys
@@ -14,6 +16,7 @@ try:
 except FileNotFoundError:
     # Create an empty list if the file doesn't exist
     my_list = []
+
 
 # Add command-line arguments to the list
 my_list.extend(sys.argv[1:])

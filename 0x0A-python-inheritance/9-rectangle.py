@@ -18,6 +18,7 @@ class Rectangle(BaseGeometry):
 
     def __init__(self, width, height):
         """Initializes an instance.
+
         Args:
             - width: width of the rectangle
             - heigth: height of the rectangle
@@ -38,4 +39,4 @@ class Rectangle(BaseGeometry):
         Overwrites the area() method from BaseGeometry.
         """
 
-        return self.__width * self.
+        return self.__width * self.__height

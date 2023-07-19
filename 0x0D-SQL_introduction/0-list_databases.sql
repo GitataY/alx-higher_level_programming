@@ -1,4 +1,2 @@
--- Script: list_databases.sql
--- Description: Lists all databases in the MySQL server
-
+-- Query to display databases
 SHOW DATABASES;
